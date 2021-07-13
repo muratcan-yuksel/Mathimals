@@ -9,6 +9,75 @@
     <title>Mathimals</title>
 </head>
 <body>
+    <main>
+        <header id="main-header">
+            <h1>Welcome to Mathimals</h1>
+            <h2>Math & Typing Game</h2>
+        </header>
+        <section id="user-data">
+            <form action="#" id="name-form">
+                <label for="name-input">
+                    <input type="text" id="name-input" required placeholder="Please enter your name">
+                </label>
+                <input type="submit" name="submit" value="Submit" class="form-btn">
+            </form>
+        </section>
+        <section id="scores-section">
+            <div id="game-rules">
+                <p>Welcome to Mathimals</p>
+                <p>To start the game, press the Turn Cards button.</p>
+                <p>You will see 3 animals. Type the name of the animal corresponding to the result.</p>
+            </div>
+            <div id="scores">
+                <div class="score total">
+                    <span>Total Score: </span>
+                    <span>00:00:00.000</span>
+                </div>
+                <div class="score partial">
+                    <span>Partial Score: </span>
+                    <span>00:00:00.000</span>
+                </div>
+            </div>
+            <div class="game-btn start-btn">Start Game</div>
+        </section>
+        <section id="cards-section">
+            <div class="cards-wrapper">
+                <div class="card card-1">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img>
+                            <span>3x2</span>
+                        </div>
+                        <div class="card-back"></div>
+                    </div>
+                </div>
+                <div class="card card-2">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img>
+                            <span>3x2</span>
+                        </div>
+                        <div class="card-back"></div>
+                    </div>
+                </div>
+                <div class="card card-3">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img>
+                            <span>3x2</span>
+                        </div>
+                        <div class="card-back"></div>
+                    </div>
+                </div>
+            </div>
+            <form action="#" >
+                <label for="animal-input" >
+                    <input type="text" id="animal-input" required placeholder="Type the animal">
+                </label>
+                <input type="submit" name="submit" value="Submit" class="form-btn" >
+            </form>
+        </section>
+    </main>
     
 </body>
 </html>
