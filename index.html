@@ -6,6 +6,10 @@
     <link rel="icon" type="image/png" href="images/pig.png" />
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Open+Sans&display=swap" rel="stylesheet">
+
     <title>Mathimals</title>
 </head>
 <body>
@@ -24,9 +28,8 @@
         </section>
         <section id="scores-section">
             <div id="game-rules">
-                <p>Welcome to Mathimals</p>
                 <p>To start the game, press the Turn Cards button.</p>
-                <p>You will see 3 animals. Type the name of the animal picturer class="animal-pic"esponding to the result.</p>
+                <p>You will see 3 animals. Do the math. Which animal gives the right result?</p>
             </div>
             <div id="scores">
                 <div class="score total">
@@ -38,7 +41,9 @@
                     <span>00:00:00.000</span>
                 </div>
             </div>
-            <div class="game-btn start-btn">Start Game</div>
+            <div class="game-btn start-btn">
+                <span>Start Game</span>
+            </div>
         </section>
         <section id="cards-section">
             <div class="cards-wrapper">
@@ -77,8 +82,9 @@
                 </div>
             </div>
             <form action="#" >
-                <label for="animal pictureu class="animal-pic"t" >
-                    <input type="text" id="animal pictureu class="animal-pic"t" required placeholder="Type the animal picture  class="animal-pic"              </label>
+                <label for="animal-input" >
+                    <input type="text" id="animal-input" required placeholder="Type the animal name">
+                 </label>
                 <input type="submit" name="submit" value="Submit" class="form-btn" >
             </form>
         </section>
