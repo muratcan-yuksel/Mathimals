@@ -6,6 +6,5 @@ const dom = {
 dom.startBtn.addEventListener("click", () => {
   dom.innerCards.forEach((card) => {
     card.style.transform = "rotateY(180deg)";
-    // console.log(card);
   });
 });
