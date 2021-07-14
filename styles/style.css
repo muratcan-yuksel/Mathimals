@@ -106,9 +106,9 @@ input[type="text"] {
   font-size: 10rem;
 }
 
-.card:hover .card-inner {
+/* .card:hover .card-inner {
   transform: rotateY(180deg);
-}
+} */
 
 .card-front, .card-back {
   position: absolute;
@@ -120,11 +120,6 @@ input[type="text"] {
   flex-direction: column;
   justify-content: center;
   border-radius: 15px;
-}
-
-.card-front {
-  /* background-color: #bbb; */
-  color: black;
 }
 
 .img-wrapper {
@@ -142,10 +137,11 @@ input[type="text"] {
   max-height: 100%;
 }
 
-.card-back {
-  /* background-color: #2980b9; */
-  color: white;
+.card-front {
   transform: rotateY(180deg);
+}
+.card-back {
+  color: white;  
   max-width: 100%;
   max-height: auto;
   background: url("/images/card-back.jpg") 00 no-repeat;
