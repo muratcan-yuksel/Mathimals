@@ -147,8 +147,25 @@ input[type="text"] {
   background: url("/images/card-back.jpg") 00 no-repeat;
 }
 
+/* Styling buttons and input fields */
 #modalButton{
 display:flex;
 justify-content: flex-end;
 margin:1em;
 }
+.form-btn{
+  background-color: #ffc107;
+  width:6em;
+  color: white;
+  font-weight:900;
+  border-radius: 10%;
+  border:none;
+}
+input{
+  border-radius: 10%;
+}
+.btn-info{
+  color:white !important;
+  font-weight:900 !important;
+}
+/* Styling buttons and input fields ends here */
