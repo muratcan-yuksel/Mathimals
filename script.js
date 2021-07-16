@@ -6,15 +6,32 @@ const dom = {
 };
 
 //array that holds the possible numbers that when multiplied can give the correct answer
-const possibleNumbers =[]
+let possibleNumbers =[]
 const createNumbers= () => {
   for (i=1; i<=6; i++){
     possibleNumbers.push(i);
   }
 }
+
+
 createNumbers();
 console.log(possibleNumbers);
-//logic that gives the 
+
+//slice the last element of the array so that the answer cannot be "1 * the given number" all the time
+let poppedNumbers = possibleNumbers.slice(0,-1);
+console.log(poppedNumbers);
+let sum = 6;
+//logic that gives the two numbers that gives the correct answer when multiplied to each other
+function detectPair(sum, poppedNumbers) {
+  for (i=0; i<poppedNumbers.length; i++) {
+    for (j=0; j<poppedNumbers.length; j++) {
+      if (i == j) continue;
+      else if (poppedNumbers[i] * poppedNumbers[j] === sum) return [poppedNumbers[i], poppedNumbers[j]];
+    }
+  }; return null;
+}
+
+console.log(detectPair(sum, poppedNumbers)); 
 
 //function to get a random element from an array
 const getRandomElement = (array) => {
@@ -39,7 +56,7 @@ dom.cardOperations.forEach((card) => {
 if (card.className != "correct-answer"){
   card.textContent=  (Math.floor(Math.random() * 6) + 1) + "x" + (Math.floor(Math.random() * 6) + 1);
 }else {
-
+card.textContent= (detectPair(sum, poppedNumbers))[0] + "x" + (detectPair(sum, poppedNumbers))[1];
 }
 
 });
