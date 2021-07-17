@@ -2,25 +2,41 @@ const dom = {
   startBtn: document.querySelector(".start-btn"),
   innerCards: document.querySelectorAll(".card-inner"),
   //get the text content in each card element
-  cardOperations: document.querySelectorAll(".card-operation")
+  cardOperations: document.querySelectorAll(".card-operation"),
+  //given sum number
+  givenNumber: document.getElementById("number"),
+
+   
 };
+
+const createSumNumber=()=>{
+  dom.givenNumber.textContent= (Math.floor(Math.random() * 15) + 1)
+  }
+  createSumNumber();
+  console.log(dom.givenNumber);
+
 
 //array that holds the possible numbers that when multiplied can give the correct answer
 let possibleNumbers =[]
 const createNumbers= () => {
-  for (i=1; i<=6; i++){
+  for (i=1; i<=dom.givenNumber.textContent; i++){
     possibleNumbers.push(i);
   }
 }
 
-
 createNumbers();
 console.log(possibleNumbers);
 
-//slice the last element of the array so that the answer cannot be "1 * the given number" all the time
+// //slice the last element of the array so that the answer cannot be "1 * the given number" all the time
 let poppedNumbers = possibleNumbers.slice(0,-1);
 console.log(poppedNumbers);
-let sum = 6;
+
+let sum = Number(dom.givenNumber.textContent);
+// console.log(sum);
+console.log(dom.givenNumber.textContent)
+
+document.getElementById("number").textContent= sum;
+
 //logic that gives the two numbers that gives the correct answer when multiplied to each other
 function detectPair(sum, poppedNumbers) {
   for (i=0; i<poppedNumbers.length; i++) {
@@ -31,7 +47,12 @@ function detectPair(sum, poppedNumbers) {
   }; return null;
 }
 
+
+
+console.log(poppedNumbers[poppedNumbers.length -1] );
+
 console.log(detectPair(sum, poppedNumbers)); 
+console.log(detectPair(sum, possibleNumbers));
 
 //function to get a random element from an array
 const getRandomElement = (array) => {
@@ -54,11 +75,23 @@ dom.startBtn.addEventListener("click", () => {
   //generate a random operation between numbers 1-10 on start game button click
 dom.cardOperations.forEach((card) => {
 if (card.className != "correct-answer"){
-  card.textContent=  (Math.floor(Math.random() * 6) + 1) + "x" + (Math.floor(Math.random() * 6) + 1);
-}else {
-card.textContent= (detectPair(sum, poppedNumbers))[0] + "x" + (detectPair(sum, poppedNumbers))[1];
+  card.textContent=  (Math.floor(Math.random() * dom.givenNumber.textContent) + 1) + "x" + (Math.floor(Math.random() * dom.givenNumber.textContent) + 1);
 }
+// else {
+//   if( detectPair(sum, poppedNumbers)== null)
+//   {
+//     card.textContent= detectPair(sum, possibleNumbers)[0] + "x" + detectPair(sum, possibleNumbers)[1];
+// correctAnswer.classList.remove("correct-answer");
+// correctAnswer.classList.add("card-operation");
+    
+//   }
+//   else {
+//     card.textContent= (detectPair(sum, poppedNumbers))[0] + "x" + (detectPair(sum, poppedNumbers))[1];
+//     correctAnswer.classList.remove("correct-answer");
+//     correctAnswer.classList.add("card-operation");
+//   }
 
+// }
 });
 });
 
