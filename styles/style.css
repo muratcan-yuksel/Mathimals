@@ -53,6 +53,7 @@ header h1 {
   border-bottom-right-radius: 5px;
   border:none;
 }
+
 input[type="text"] {
   height: 35px;
   width: 200px;
@@ -60,7 +61,6 @@ input[type="text"] {
   outline: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  /* flex-grow: 1; */
   padding-left: 10px;
 }
 
@@ -110,8 +110,6 @@ form {
   display: flex;
   justify-content: center;
 }
-
-
 
 .cards-wrapper {
   margin: 20px auto;
@@ -179,6 +177,6 @@ form {
   color: white;  
   max-width: 100%;
   max-height: auto;
-  background: url("/images/card-back.jpg") 00 no-repeat;
+  background: url("/images/card-back.jpg") 0 0 no-repeat;
 }
 
