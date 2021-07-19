@@ -17,7 +17,7 @@ body {
   font-family: 'Open Sans', sans-serif;
     
 }
-h2 {
+h2, .score span {
   font-size: 1.5rem;
 }
 
@@ -89,6 +89,8 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   
 }
 
