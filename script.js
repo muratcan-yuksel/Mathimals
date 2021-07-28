@@ -234,13 +234,13 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     if (sum < 10) {
       poppedNumbers = possibleNumbers.splice(0, 1);
     } else if (sum > 10 && sum < 50) {
-      poppedNumbers = possibleNumbers.splice(1, 23);
+      poppedNumbers = possibleNumbers.splice(0, 7);
     } else if (sum > 50 && sum < 100) {
-      poppedNumbers = possibleNumbers.splice(1, 57);
+      poppedNumbers = possibleNumbers.splice(0, 57);
     } else if (sum > 100 && sum < 150) {
-      poppedNumbers = possibleNumbers.splice(1, 103);
+      poppedNumbers = possibleNumbers.splice(0, 103);
     } else if (sum > 150 && sum <= 200) {
-      poppedNumbers = possibleNumbers.splice(1, 157);
+      poppedNumbers = possibleNumbers.splice(0, 157);
     }
 
     console.log(poppedNumbers);
@@ -342,10 +342,11 @@ dom.nextLevelButton.addEventListener("click", () => {
   //call the multiplication function
   //The only problem is that when the number is big, it goes outside of the card.
   //The solution: Make the font smaller.
-  gamePlayModule.createSumNumber(200);
-  if (arr.length <= 4) {
-    gamePlayModule.multiplication();
-  } else {
-    gamePlayModule.addition();
-  }
+  gamePlayModule.createSumNumber(50);
+  // if (arr.length <= 4) {
+  //   gamePlayModule.multiplication();
+  // } else {
+  //   gamePlayModule.addition();
+  // }
+  gamePlayModule.subtraction();
 });
