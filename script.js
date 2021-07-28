@@ -310,8 +310,100 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     possibleNumbers = [];
     poppedNumbers = [];
   };
+  const division = () => {
+    //array that holds the possible numbers that when divided can give the correct answer
+    let possibleNumbers = [];
+    const createNumbers = () => {
+      for (i = 1; i <= dom.givenNumber.textContent + 250; i++) {
+        possibleNumbers.push(i);
+      }
+    };
+
+    createNumbers();
+    console.log(possibleNumbers);
+
+    let sum = Number(dom.givenNumber.textContent);
+    // console.log(sum);
+    console.log(dom.givenNumber.textContent);
+
+    document.getElementById("number").textContent = sum;
+
+    //with this random number the division return something interesting other than /2 or /3 all the time
+    //I use it in splice, you can see it in line 337
+
+    let randomizeNum = Math.floor(Math.random() * 3) + 1; //the + 1 makes it so its not 0.
+
+    // //slice the first element of the array so that the answer cannot be " the given number / 1" all the time
+    let poppedNumbers = possibleNumbers.splice(0, randomizeNum);
+    console.log(poppedNumbers);
+
+    //logic that gives the two numbers that gives the correct answer when multiplied to each other
+    function detectPair(sum, poppedNumbers) {
+      for (i = 0; i < poppedNumbers.length; i++) {
+        for (j = 0; j < poppedNumbers.length; j++) {
+          if (i == j) continue;
+          else if (poppedNumbers[i] / poppedNumbers[j] === sum)
+            return [poppedNumbers[i], poppedNumbers[j]];
+        }
+      }
+      return null;
+    }
+
+    console.log(poppedNumbers[poppedNumbers.length - 1]);
+
+    console.log(detectPair(sum, poppedNumbers));
+    console.log(detectPair(sum, possibleNumbers));
+
+    //function to get a random element from an array
+    const getRandomElement = (array) => {
+      return array[Math.floor(Math.random() * array.length)];
+    };
+    //get a random element from the card operations array
+    const correctAnswer = getRandomElement(dom.cardOperations);
+    console.log(correctAnswer);
+    //remove its class
+    correctAnswer.classList.remove("card-operation");
+    //add a new one
+    correctAnswer.classList.add("correct-answer");
+
+    //generate a random operation between numbers in the array on start game button click
+    const generateOperation = () => {
+      dom.cardOperations.forEach((card) => {
+        if (card.className != "correct-answer") {
+          card.textContent =
+            Math.floor(Math.random() * dom.givenNumber.textContent) +
+            1 +
+            "/" +
+            (Math.floor(Math.random() * dom.givenNumber.textContent) + 1);
+        } else {
+          /*these if statements prevent the case in which the number has no divisors in poppedNumbers, 
+    but obviously have in possibleNumbers( like 1 and the number itself)  */
+          if (detectPair(sum, poppedNumbers) == null) {
+            card.textContent =
+              detectPair(sum, possibleNumbers)[0] +
+              "/" +
+              detectPair(sum, possibleNumbers)[1];
+            correctAnswer.classList.remove("correct-answer");
+            correctAnswer.classList.add("card-operation");
+          } else {
+            card.textContent =
+              detectPair(sum, poppedNumbers)[0] +
+              "/" +
+              detectPair(sum, poppedNumbers)[1];
+            correctAnswer.classList.remove("correct-answer");
+            correctAnswer.classList.add("card-operation");
+          }
+        }
+      });
+    };
+    //call the function, if not, the cards will not have numbers on them
+    generateOperation();
+    //empty the arrays so that they won't stack up
+    possibleNumbers = [];
+    poppedNumbers = [];
+  };
   //return only the function(s) needed
-  return { multiplication, addition, subtraction, createSumNumber };
+  return { multiplication, addition, subtraction, division, createSumNumber };
 })();
 /*will use this array to change levels
 how?
@@ -348,5 +440,5 @@ dom.nextLevelButton.addEventListener("click", () => {
   // } else {
   //   gamePlayModule.addition();
   // }
-  gamePlayModule.subtraction();
+  gamePlayModule.division();
 });
