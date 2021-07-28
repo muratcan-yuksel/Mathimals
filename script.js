@@ -444,12 +444,23 @@ dom.nextLevelButton.addEventListener("click", () => {
   //The only problem is that when the number is big, it goes outside of the card.
   //The solution: Make the font smaller.
   gamePlayModule.createSumNumber(50);
-  // if (arr.length <= 4) {
-  //   gamePlayModule.multiplication();
-  // } else {
-  //   gamePlayModule.addition();
+
+  //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
+
+  // if (arr.length < 4) {
+  //   gamePlayModule.createSumNumber(10);
+  //   functionArray[randomizeNum]();
+  // } else if (arr.length > 4 && arr.length < 8) {
+  //   gamePlayModule.createSumNumber(20);
+  //   functionArray[randomizeNum]();
+  // } else if (arr.length > 8 && arr.length < 12) {
+  //   gamePlayModule.createSumNumber(30);
+  //   functionArray[randomizeNum]();
+  // } else if (arr.length > 12 && arr.length < 16) {
+  //   gamePlayModule.createSumNumber(50);
+  //   functionArray[randomizeNum]();
   // }
-  // gamePlayModule.division();
+
   //call a random operation on each click
   functionArray[randomizeNum]();
 });
