@@ -410,6 +410,13 @@ how?
 if the array length is greater than 4, change to division for instance
 if it's greater than 8, change to addition and so on */
 let arr = [];
+//this array contains different operation functions from the module
+const functionArray = [
+  gamePlayModule.division,
+  gamePlayModule.subtraction,
+  gamePlayModule.multiplication,
+  gamePlayModule.addition,
+];
 
 dom.startBtn.addEventListener("click", () => {
   //push something to array on start
@@ -425,13 +432,15 @@ dom.startBtn.addEventListener("click", () => {
 
 //when the next level button is clicked, the game will be played again
 dom.nextLevelButton.addEventListener("click", () => {
+  //should return a random number between 0-3 (including 3)
+  let randomizeNum = Math.floor(Math.random() * 4);
+
   //push something to array on each click
   arr.push(1);
   console.log(arr);
   dom.innerCards.forEach((card) => {
     card.style.transform = "rotateY(180deg)";
   });
-  //call the multiplication function
   //The only problem is that when the number is big, it goes outside of the card.
   //The solution: Make the font smaller.
   gamePlayModule.createSumNumber(50);
@@ -440,5 +449,7 @@ dom.nextLevelButton.addEventListener("click", () => {
   // } else {
   //   gamePlayModule.addition();
   // }
-  gamePlayModule.division();
+  // gamePlayModule.division();
+  //call a random operation on each click
+  functionArray[randomizeNum]();
 });
