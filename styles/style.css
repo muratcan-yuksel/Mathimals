@@ -84,6 +84,17 @@ input[type="text"] {
   /* Styling buttons and input fields ends here */
 
 
+/* User name section  */
+.username-section {
+  display : none;
+  margin: 0 auto;
+}
+
+.username-section h2 {
+  display: inline;
+}
+
+/* Scores section  */
 
 #scores-section {
   display: flex;

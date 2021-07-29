@@ -4,6 +4,7 @@ const dom = {
   partialScore: document.querySelector("#partial-score"),
   nameForm: document.querySelector("#name-form"),
   nameInput: document.querySelector("#name-input"),
+  usernameSection: document.querySelector(".username-section"),
   playerUsername: document.querySelector("#player-username"),
   //get the text content in each card element
   cardOperations: document.querySelectorAll(".card-operation"),
@@ -13,6 +14,9 @@ const dom = {
 };
 
 dom.nameForm.addEventListener("submit", () => {
+  dom.nameForm.style.display = "none";
+  dom.playerUsername.textContent = dom.nameInput.value;
+  dom.usernameSection.style.display = "inline-block";
   console.log(dom.nameInput.value);
 });
 
