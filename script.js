@@ -11,6 +11,8 @@ const dom = {
   //given sum number
   givenNumber: document.getElementById("number"),
   nextLevelButton: document.getElementById("next-level-btn"),
+  animalForm: document.querySelector("#animal-form"),
+  animalInput: document.querySelector("#animal-input"),
 };
 
 dom.nameForm.addEventListener("submit", () => {
@@ -445,38 +447,41 @@ dom.startBtn.addEventListener("click", () => {
 
 //when the next level button is clicked, the game will be played again
 dom.nextLevelButton.addEventListener("click", () => {
-  stop();
-  //should return a random number between 0-3 (including 3)
-  let randomizeNum = Math.floor(Math.random() * 4);
+  if (dom.animalInput.value) {
+    stop();
+    //should return a random number between 0-3 (including 3)
+    let randomizeNum = Math.floor(Math.random() * 4);
 
-  //push something to array on each click
-  arr.push(1);
-  console.log(arr);
-  dom.innerCards.forEach((card) => {
-    card.style.transform = "rotateY(180deg)";
-  });
-  //The only problem is that when the number is big, it goes outside of the card.
-  //The solution: Make the font smaller.
-  gamePlayModule.createSumNumber(50);
+    //push something to array on each click
+    arr.push(1);
+    console.log(arr);
+    dom.innerCards.forEach((card) => {
+      card.style.transform = "rotateY(180deg)";
+    });
+    //The only problem is that when the number is big, it goes outside of the card.
+    //The solution: Make the font smaller.
+    gamePlayModule.createSumNumber(50);
 
-  //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
+    //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
 
-  // if (arr.length < 4) {
-  //   gamePlayModule.createSumNumber(10);
-  //   functionArray[randomizeNum]();
-  // } else if (arr.length > 4 && arr.length < 8) {
-  //   gamePlayModule.createSumNumber(20);
-  //   functionArray[randomizeNum]();
-  // } else if (arr.length > 8 && arr.length < 12) {
-  //   gamePlayModule.createSumNumber(30);
-  //   functionArray[randomizeNum]();
-  // } else if (arr.length > 12 && arr.length < 16) {
-  //   gamePlayModule.createSumNumber(50);
-  //   functionArray[randomizeNum]();
-  // }
+    // if (arr.length < 4) {
+    //   gamePlayModule.createSumNumber(10);
+    //   functionArray[randomizeNum]();
+    // } else if (arr.length > 4 && arr.length < 8) {
+    //   gamePlayModule.createSumNumber(20);
+    //   functionArray[randomizeNum]();
+    // } else if (arr.length > 8 && arr.length < 12) {
+    //   gamePlayModule.createSumNumber(30);
+    //   functionArray[randomizeNum]();
+    // } else if (arr.length > 12 && arr.length < 16) {
+    //   gamePlayModule.createSumNumber(50);
+    //   functionArray[randomizeNum]();
+    // }
 
-  //call a random operation on each click
-  functionArray[randomizeNum]();
+    //call a random operation on each click
+    functionArray[randomizeNum]();
+  }
+  console.log(dom.animalInput.value);
 });
 
 // Counter Stuff
