@@ -62,16 +62,20 @@
                 </label>
                 <input type="submit" name="submit" value="Enter" class="form-btn">
             </form>
+            <div class="username-section">
+                <h2>Player: </h2>
+                <h2 id="player-username"></h2>
+            </div>
         </section>
         <section id="scores-section">
             <div id="scores">
                 <div class="score total">
                     <span>Total Score: </span>
-                    <span>00:00:00.000</span>
+                    <span id="total-score">00:00:00.000</span>
                 </div>
                 <div class="score partial">
                     <span>Partial Score: </span>
-                    <span>00:00:00.000</span>
+                    <span id="partial-score">00:00:00.000</span>
                 </div>
             </div>
             <div class="game-btn start-btn">
@@ -128,7 +132,7 @@
                 <label for="animal-input" >
                     <input type="text" id="animal-input" required placeholder="Type the animal name">
                  </label>
-                <input type="submit" id="nextLevelBtn" name="submit" value="Enter" class="form-btn" >
+                <input type="submit" id="next-level-btn" name="submit" value="Enter" class="form-btn" >
             </form>
         </section>
     </main>

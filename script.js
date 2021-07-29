@@ -1,12 +1,20 @@
 const dom = {
   startBtn: document.querySelector(".start-btn"),
   innerCards: document.querySelectorAll(".card-inner"),
+  partialScore: document.querySelector("#partial-score"),
+  nameForm: document.querySelector("#name-form"),
+  nameInput: document.querySelector("#name-input"),
+  playerUsername: document.querySelector("#player-username"),
   //get the text content in each card element
   cardOperations: document.querySelectorAll(".card-operation"),
   //given sum number
   givenNumber: document.getElementById("number"),
-  nextLevelButton: document.getElementById("nextLevelBtn"),
+  nextLevelButton: document.getElementById("next-level-btn"),
 };
+
+dom.nameForm.addEventListener("submit", () => {
+  console.log(dom.nameInput.value);
+});
 
 //create a module to keep things in order
 const gamePlayModule = (() => {
@@ -428,10 +436,12 @@ dom.startBtn.addEventListener("click", () => {
   //call the multiplication function
   gamePlayModule.createSumNumber(10);
   gamePlayModule.multiplication();
+  start();
 });
 
 //when the next level button is clicked, the game will be played again
 dom.nextLevelButton.addEventListener("click", () => {
+  stop();
   //should return a random number between 0-3 (including 3)
   let randomizeNum = Math.floor(Math.random() * 4);
 
@@ -464,3 +474,130 @@ dom.nextLevelButton.addEventListener("click", () => {
   //call a random operation on each click
   functionArray[randomizeNum]();
 });
+
+// Counter Stuff
+
+let milli = 0;
+let seconds = 0;
+let minutes = 0;
+let onOff = 0;
+function startCounting() {
+  if (milli > 999) {
+    milli = 0;
+    if (seconds < 60) {
+      seconds += 1;
+    }
+  } else {
+    milli += 1;
+  }
+  if (seconds > 59) {
+    seconds = 0;
+    minutes += 1;
+  }
+
+  if (milli > 10) {
+    txtMilli.innerHTML = "0" + milli;
+  }
+  if (milli < 10) {
+    txtMilli.innerHTML = "" + milli;
+  }
+}
+let timeBegan = null,
+  timeStopped = null,
+  stoppedDuration = 0,
+  started = null;
+
+function start() {
+  if (timeBegan === null) {
+    timeBegan = new Date();
+  }
+
+  if (timeStopped !== null) {
+    stoppedDuration += new Date() - timeStopped;
+  }
+  console.log(stoppedDuration);
+
+  started = setInterval(clockRunning, 10);
+}
+
+function stop() {
+  timeStopped = new Date();
+  clearInterval(started);
+
+  //get the DOM string
+  // let result = document.querySelector("#display-area").textContent;
+
+  let result = document.querySelector("#total-score").textContent;
+  console.log(result);
+  console.log(result.split(""));
+
+  //split the string into an array
+  let splitted = result.split("");
+
+  //take the hours part of the array
+  let hours = splitted.slice(0, 2);
+  //create an empty hours array
+  let hoursArr = [];
+  //add the splitted digits into the hours array, mostly it'll stay as 00
+  hours.forEach((item) => hoursArr.push(Number(item)));
+
+  console.log(hoursArr);
+
+  //do the same for minutes
+  let mins = splitted.slice(3, 5);
+  let minsArr = [];
+  mins.forEach((item) => minsArr.push(Number(item)));
+  console.log(minsArr);
+
+  //do the same for seconds
+  let secsArr = [];
+  let secs = splitted.slice(6, 8);
+  secs.forEach((item) => secsArr.push(Number(item)));
+  console.log(secsArr);
+
+  //do the same for miliseconds
+  let milisecsArr = [];
+  let milisecs = splitted.slice(9, 12);
+  milisecs.forEach((item) => milisecsArr.push(Number(item)));
+  console.log(milisecsArr);
+
+  //concat these arrays
+  let concatArr = hoursArr.concat(minsArr).concat(secsArr.concat(milisecsArr));
+  console.log(concatArr);
+
+  //turn this new concatted array to number so that you can later decide which score is the smallest number amongst all
+  let numberedConcatArr = Number(concatArr.join(""));
+  console.log(numberedConcatArr);
+  console.log(concatArr);
+
+  // once you compare the above number and decide which is the best (smallest) score,
+  // turn this number into a string that can be displayed on the page
+  /*  A top 10 scores array can be created and changed, ordered in real time   */
+
+  concatArr.splice(2, 0, ":");
+  concatArr.splice(5, 0, ":");
+  concatArr.splice(8, 0, ".");
+  console.log(concatArr);
+  //and this will be the score that will be displayed on the board
+  let userScore = concatArr.join("");
+  console.log(userScore);
+}
+
+function clockRunning() {
+  let currentTime = new Date(),
+    timeElapsed = new Date(currentTime - timeBegan - stoppedDuration),
+    hour = timeElapsed.getUTCHours(),
+    min = timeElapsed.getUTCMinutes(),
+    sec = timeElapsed.getUTCSeconds(),
+    ms = timeElapsed.getUTCMilliseconds();
+
+  // document.getElementById("display-area").innerHTML =
+  dom.partialScore.textContent =
+    (hour > 9 ? hour : "0" + hour) +
+    ":" +
+    (min > 9 ? min : "0" + min) +
+    ":" +
+    (sec > 9 ? sec : "0" + sec) +
+    "." +
+    (ms > 99 ? ms : ms > 9 ? "0" + ms : "00" + ms);
+}
