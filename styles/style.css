@@ -100,34 +100,11 @@ input[type="text"] {
   margin-right: 1rem;
 }
 
-/* .username-section h2 {
-  display: inline;
-} */
 
 .time-data {
   margin-left: 1.5rem;
 }
 
-/* #time-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  
-} */
-
-/* #scores {
-  margin-bottom: 10px;
-  width: 75%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-} */
-
-/* .score  {
-  margin: 10px;
-} */
 
 form {
   display: flex;
