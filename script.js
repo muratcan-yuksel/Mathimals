@@ -1,11 +1,12 @@
 const dom = {
   startBtn: document.querySelector(".start-btn"),
   innerCards: document.querySelectorAll(".card-inner"),
-  partialScore: document.querySelector("#partial-score"),
+  totalTime: document.querySelector("#total-time"),
   nameForm: document.querySelector("#name-form"),
   nameInput: document.querySelector("#name-input"),
-  usernameSection: document.querySelector(".username-section"),
+  playerData: document.querySelector(".player-data"),
   playerUsername: document.querySelector("#player-username"),
+
   //get the text content in each card element
   cardOperations: document.querySelectorAll(".card-operation"),
   //given sum number
@@ -18,8 +19,7 @@ const dom = {
 dom.nameForm.addEventListener("submit", () => {
   dom.nameForm.style.display = "none";
   dom.playerUsername.textContent = dom.nameInput.value;
-  dom.usernameSection.style.display = "inline-block";
-  console.log(dom.nameInput.value);
+  dom.playerData.style.display = "flex";
 });
 
 //create a module to keep things in order
@@ -448,7 +448,6 @@ dom.startBtn.addEventListener("click", () => {
 //when the next level button is clicked, the game will be played again
 dom.nextLevelButton.addEventListener("click", () => {
   if (dom.animalInput.value) {
-    stop();
     //should return a random number between 0-3 (including 3)
     let randomizeNum = Math.floor(Math.random() * 4);
 
@@ -536,7 +535,7 @@ function stop() {
   //get the DOM string
   // let result = document.querySelector("#display-area").textContent;
 
-  let result = document.querySelector("#total-score").textContent;
+  let result = totalTime.textContent;
   console.log(result);
   console.log(result.split(""));
 
@@ -601,7 +600,7 @@ function clockRunning() {
     ms = timeElapsed.getUTCMilliseconds();
 
   // document.getElementById("display-area").innerHTML =
-  dom.partialScore.textContent =
+  dom.totalTime.textContent =
     (hour > 9 ? hour : "0" + hour) +
     ":" +
     (min > 9 ? min : "0" + min) +

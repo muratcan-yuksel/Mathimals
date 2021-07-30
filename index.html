@@ -55,33 +55,39 @@
             <h1>Welcome to Mathimals</h1>
             <h2>Math & Typing Game</h2>
         </header>
-        <section id="user-data">
+        <section id="game-data-section">
             <form action="#" id="name-form">
                 <label for="name-input">
                     <input type="text" id="name-input" required placeholder="Please enter your name">
                 </label>
                 <input type="submit" name="submit" value="Enter" class="form-btn">
-            </form>
-            <div class="username-section">
+            </form>  
+
+            <div class="player-data">
                 <h2>Player: </h2>
                 <h2 id="player-username"></h2>
-            </div>
+            </div>  
+            <div class="time-data">
+                <span>Total Time </span>
+                <span id="total-time">00:00:00.000</span>
+            </div> 
         </section>
-        <section id="scores-section">
-            <div id="scores">
+        <!-- <section id="time-section"> -->
+            <!-- <div id="scores">
                 <div class="score total">
                     <span>Total Score: </span>
                     <span id="total-score">00:00:00.000</span>
                 </div>
-                <div class="score partial">
-                    <span>Partial Score: </span>
-                    <span id="partial-score">00:00:00.000</span>
-                </div>
-            </div>
-            <div class="game-btn start-btn">
-                <span>Start Game</span>
-            </div>
-        </section>
+                
+            </div> -->
+            <!-- <div class="time-data">
+                <span>Total Time </span>
+                <span id="total-time">00:00:00.000</span>
+            </div> -->
+        <div class="game-btn start-btn">
+            <span>Start Game</span>
+        </div>
+        <!-- </section> -->
         <section id="cards-section">
             <div class="cards-wrapper">
                 <div class="card card-num">
