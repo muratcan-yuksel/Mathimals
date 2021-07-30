@@ -1,3 +1,5 @@
+import { animalArr } from "./animalArr.js";
+
 const dom = {
   startBtn: document.querySelector(".start-btn"),
   innerCards: document.querySelectorAll(".card-inner"),
