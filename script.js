@@ -534,12 +534,22 @@ dom.nextLevelButton.addEventListener("click", (e) => {
   //   functionArray[randomizeNum]();
   // }
 
+  //save the storage in a const to use it properly, otherwise it's slippery
+  const answer = sessionStorage.getItem("answer");
+  //this order of action is important. Change it and the algorithm breaks.
   gamePlayModule.displayCards();
-
   //call a random operation on each click
   functionArray[randomizeNum]();
 
   console.log(sessionStorage.getItem("answer"));
+  //save the input value too, otherwise it's slippery
+  const input = dom.animalInput.value;
+  console.log(input);
+  //should add some sugar coating here
+  if (input !== answer) {
+    alert("1nooy");
+  }
+  dom.animalInput.value = "";
 
   // }
 });
