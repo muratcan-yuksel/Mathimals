@@ -37,7 +37,7 @@ const gamePlayModule = (() => {
     //array that holds the possible numbers that when added can give the correct answer
     let possibleNumbers = [];
     const createNumbers = () => {
-      for (i = 1; i <= dom.givenNumber.textContent; i++) {
+      for (let i = 1; i <= dom.givenNumber.textContent; i++) {
         possibleNumbers.push(i);
       }
     };
@@ -72,7 +72,7 @@ const gamePlayModule = (() => {
 
     //logic that gives the two numbers that gives the correct answer when added to each other
     function detectPair(sum, poppedNumbers) {
-      for (i = 0; i < poppedNumbers.length; i++) {
+      for (let i = 0; i < poppedNumbers.length; i++) {
         for (j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
           else if (poppedNumbers[i] + poppedNumbers[j] === sum)
@@ -140,7 +140,7 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     //array that holds the possible numbers that when multiplied can give the correct answer
     let possibleNumbers = [];
     const createNumbers = () => {
-      for (i = 1; i <= dom.givenNumber.textContent; i++) {
+      for (let i = 1; i <= dom.givenNumber.textContent; i++) {
         possibleNumbers.push(i);
       }
     };
@@ -160,8 +160,8 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
 
     //logic that gives the two numbers that gives the correct answer when multiplied to each other
     function detectPair(sum, poppedNumbers) {
-      for (i = 0; i < poppedNumbers.length; i++) {
-        for (j = 0; j < poppedNumbers.length; j++) {
+      for (let i = 0; i < poppedNumbers.length; i++) {
+        for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
           else if (poppedNumbers[i] * poppedNumbers[j] === sum)
             return [poppedNumbers[i], poppedNumbers[j]];
@@ -228,7 +228,7 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     //array that holds the possible numbers that when added can give the correct answer
     let possibleNumbers = [];
     const createNumbers = () => {
-      for (i = 1; i <= dom.givenNumber.textContent + 250; i++) {
+      for (let i = 1; i <= dom.givenNumber.textContent + 250; i++) {
         possibleNumbers.push(i);
       }
     };
@@ -263,7 +263,7 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
 
     //logic that gives the two numbers that gives the correct answer when added to each other
     function detectPair(sum, poppedNumbers) {
-      for (i = 0; i < poppedNumbers.length; i++) {
+      for (let i = 0; i < poppedNumbers.length; i++) {
         for (j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
           else if (poppedNumbers[i] - poppedNumbers[j] === sum)
@@ -330,7 +330,7 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     //array that holds the possible numbers that when divided can give the correct answer
     let possibleNumbers = [];
     const createNumbers = () => {
-      for (i = 1; i <= dom.givenNumber.textContent + 250; i++) {
+      for (let i = 1; i <= dom.givenNumber.textContent + 250; i++) {
         possibleNumbers.push(i);
       }
     };
@@ -355,7 +355,7 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
 
     //logic that gives the two numbers that gives the correct answer when multiplied to each other
     function detectPair(sum, poppedNumbers) {
-      for (i = 0; i < poppedNumbers.length; i++) {
+      for (let i = 0; i < poppedNumbers.length; i++) {
         for (j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
           else if (poppedNumbers[i] / poppedNumbers[j] === sum)
