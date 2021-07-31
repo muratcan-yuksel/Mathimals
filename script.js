@@ -1,4 +1,5 @@
 import { animalArr } from "./animalArr.js";
+console.log(animalArr);
 
 const dom = {
   startBtn: document.querySelector(".start-btn"),
@@ -16,8 +17,30 @@ const dom = {
   nextLevelButton: document.getElementById("next-level-btn"),
   animalForm: document.querySelector("#animal-form"),
   animalInput: document.querySelector("#animal-input"),
+  animalPic: document.querySelectorAll(".animal-pic"),
+  animalName: document.querySelectorAll(".animal-name"),
 };
 
+const displayObjects = () => {
+  //shufle the animal array
+  const shuffled = animalArr.sort(() => 0.5 - Math.random());
+  //get random 3 element from the shuffled array
+  let selected = shuffled.slice(0, 3);
+  console.log(shuffled);
+  console.log(selected);
+  console.log(selected[1].imageSrc);
+  console.log(dom.animalPic.length);
+  //give each card an animal and a name
+  dom.animalPic[0].src = selected[0].imageSrc;
+  dom.animalName[0].src = selected[0].nameSrc;
+  dom.animalPic[1].src = selected[1].imageSrc;
+  dom.animalName[1].src = selected[1].nameSrc;
+  dom.animalPic[2].src = selected[2].imageSrc;
+  dom.animalName[2].src = selected[2].nameSrc;
+};
+displayObjects();
+
+console.log(dom.animalPic.src);
 dom.nameForm.addEventListener("submit", () => {
   dom.nameForm.style.display = "none";
   dom.playerUsername.textContent = dom.nameInput.value;
@@ -26,6 +49,12 @@ dom.nameForm.addEventListener("submit", () => {
 
 //create a module to keep things in order
 const gamePlayModule = (() => {
+  const displayObjects = () => {
+    const shuffled = animalArr.sort(() => 0.5 - Math.random());
+    let selected = shuffled.slice(0, 3);
+    console.log(shuffled);
+    console.log(selected);
+  };
   //use this function here to be able to call it outside of the module to create a new number each level
   function createSumNumber(num) {
     dom.givenNumber.textContent = Math.floor(Math.random() * num) + 5;
