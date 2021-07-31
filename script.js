@@ -546,7 +546,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
   const input = dom.animalInput.value;
   console.log(input);
   //should add some sugar coating here
-  if (input !== answer) {
+  if (input.toLowerCase() !== answer) {
     alert("1nooy");
   }
   dom.animalInput.value = "";
