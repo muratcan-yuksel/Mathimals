@@ -1,147 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="images/pig.png" />
     <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Mathimals</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
+      <!-- Instructions Modal -->
+      <!-- Button trigger modal -->
+      <div id="modalButton">
+        <button
+          type="button"
+          class="btn btn-info"
+          data-bs-toggle="modal"
+          data-bs-target="#instructionsModal"
+        >
+          How to play the game?
+        </button>
+      </div>
 
-    <!-- Instructions Modal -->
-    <!-- Button trigger modal -->
-    <div id="modalButton" >
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#instructionsModal">
-    How to play the game?
-  </button>
-</div>
-  
-<!-- Vertically centered scrollable modal -->
+      <!-- Vertically centered scrollable modal -->
 
-  <div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="instructionsModalLabel">Instructions</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <ul>
+      <div
+        class="modal fade"
+        id="instructionsModal"
+        tabindex="-1"
+        aria-labelledby="instructionsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="instructionsModalLabel">
+                Instructions
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <ul>
                 <li>Enter your name</li>
                 <li>You will see a number and some pictures of animals</li>
                 <li>The animals have mathematical operations under them</li>
-                <li>You'll need to find the operation that gives the number given before </li>
+                <li>
+                  You'll need to find the operation that gives the number given
+                  before
+                </li>
                 <li>Once you find the correct operation</li>
-                <li>You'll write the name of the animal that contains the correct operation</li>
-            </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <li>
+                  You'll write the name of the animal that contains the correct
+                  operation
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <!-- Instructions modal ends here -->
-        <header id="main-header">
-            <h1>Welcome to Mathimals</h1>
-            <h2>Math & Typing Game</h2>
-        </header>
-        <section id="game-data-section">
-            <form action="#" id="name-form">
-                <label for="name-input">
-                    <input type="text" id="name-input" required placeholder="Please enter your name">
-                </label>
-                <input type="submit" name="submit" value="Enter" class="form-btn">
-            </form>  
+      <!-- Instructions modal ends here -->
+      <header id="main-header">
+        <h1>Welcome to Mathimals</h1>
+        <h2>Math & Typing Game</h2>
+      </header>
+      <section id="game-data-section">
+        <form action="#" id="name-form">
+          <label for="name-input">
+            <input
+              type="text"
+              id="name-input"
+              required
+              placeholder="Please enter your name"
+            />
+          </label>
+          <input type="submit" name="submit" value="Enter" class="form-btn" />
+        </form>
 
-            <div class="player-data">
-                <h2>Player: </h2>
-                <h2 id="player-username"></h2>
-            </div>  
-            <div class="time-data">
-                <span>Total Time </span>
-                <span id="total-time">00:00:00.000</span>
-            </div> 
-        </section>
-        <div class="game-btn start-btn">
-            <span>Start Game</span>
+        <div class="player-data">
+          <h2>Player:</h2>
+          <h2 id="player-username"></h2>
         </div>
-        <section id="cards-section">
-            <div class="cards-wrapper">
-                <div class="card card-num">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <span id="number"></span>
-                        </div>
-                        <div class="card-back"></div>
-                    </div>
-                </div>
+        <div class="time-data">
+          <span>Total Time </span>
+          <span id="total-time">00:00:00.000</span>
+        </div>
+      </section>
+      <div class="game-btn start-btn">
+        <span>Start Game</span>
+      </div>
+      <section id="cards-section">
+        <div class="cards-wrapper">
+          <div class="card card-num">
+            <div class="card-inner">
+              <div class="card-front">
+                <span id="number"></span>
+              </div>
+              <div class="card-back"></div>
             </div>
-            <div class="cards-wrapper">
-                <div class="card card-1">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="img-wrapper">
-                                <img alt="animal picture" class="animal-pic" src="">
-                            </div>
-                            <div class="name-img-wrapper">
-                                <img alt="animal name" class="animal-name" src="">
-                            </div>
-                            <span class="card-operation"></span>
-                        </div>
-                        <div class="card-back"></div>
-                    </div>
+          </div>
+        </div>
+        <div class="cards-wrapper">
+          <div class="card card-1">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="img-wrapper">
+                  <img alt="animal picture" class="animal-pic" src="" />
                 </div>
-                <div class="card card-2">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="img-wrapper">
-                                <img alt="animal picture" class="animal-pic" src="">
-                            </div>
-                            <div class="name-img-wrapper">
-                                <img alt="animal name" class="animal-name" src="">
-                            </div>
-                            <span class="card-operation"></span>
-                        </div>
-                        <div class="card-back"></div>
-                    </div>
+                <div class="name-img-wrapper">
+                  <img alt="animal name" class="animal-name" src="" />
                 </div>
-                <div class="card card-3">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="img-wrapper">
-                                <img alt="animal picture" class="animal-pic" src="">
-                            </div>
-                            <div class="name-img-wrapper">
-                                <img alt="animal name" class="animal-name" src="">
-                            </div>
-                            <span class="card-operation"></span>
-                        </div>
-                        <div class="card-back"></div>
-                    </div>
-                </div>
+                <div class="animalString" alt=""></div>
+                <span class="card-operation"></span>
+              </div>
+              <div class="card-back"></div>
             </div>
-            <form action="#" id="animal-form">
-                <label for="animal-input" >
-                    <input type="text" id="animal-input" required placeholder="Type the animal name">
-                 </label>
-                <input type="submit" id="next-level-btn" name="submit" value="Enter" class="form-btn" >
-            </form>
-        </section>
+          </div>
+          <div class="card card-2">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="img-wrapper">
+                  <img alt="animal picture" class="animal-pic" src="" />
+                </div>
+                <div class="name-img-wrapper">
+                  <img alt="animal name" class="animal-name" src="" />
+                </div>
+                <div class="animalString" alt=""></div>
+
+                <span class="card-operation"></span>
+              </div>
+              <div class="card-back"></div>
+            </div>
+          </div>
+          <div class="card card-3">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="img-wrapper">
+                  <img alt="animal picture" class="animal-pic" src="" />
+                </div>
+                <div class="name-img-wrapper">
+                  <img alt="animal name" class="animal-name" src="" />
+                </div>
+                <div class="animalString" alt=""></div>
+
+                <span class="card-operation"></span>
+              </div>
+              <div class="card-back"></div>
+            </div>
+          </div>
+        </div>
+        <form action="#" id="animal-form">
+          <label for="animal-input">
+            <input
+              type="text"
+              id="animal-input"
+              required
+              placeholder="Type the animal name"
+            />
+          </label>
+          <input
+            type="submit"
+            id="next-level-btn"
+            name="submit"
+            value="Enter"
+            class="form-btn"
+          />
+        </form>
+      </section>
     </main>
 
     <!-- bootstrap script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script  src="script.js" type="module"></script>
-    
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js" type="module"></script>
+  </body>
 </html>

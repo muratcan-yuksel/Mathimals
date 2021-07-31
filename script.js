@@ -19,26 +19,8 @@ const dom = {
   animalInput: document.querySelector("#animal-input"),
   animalPic: document.querySelectorAll(".animal-pic"),
   animalName: document.querySelectorAll(".animal-name"),
+  animalString: document.querySelectorAll(".animalString"),
 };
-
-const displayObjects = () => {
-  //shufle the animal array
-  const shuffled = animalArr.sort(() => 0.5 - Math.random());
-  //get random 3 element from the shuffled array
-  let selected = shuffled.slice(0, 3);
-  console.log(shuffled);
-  console.log(selected);
-  console.log(selected[1].imageSrc);
-  console.log(dom.animalPic.length);
-  //give each card an animal and a name
-  dom.animalPic[0].src = selected[0].imageSrc;
-  dom.animalName[0].src = selected[0].nameSrc;
-  dom.animalPic[1].src = selected[1].imageSrc;
-  dom.animalName[1].src = selected[1].nameSrc;
-  dom.animalPic[2].src = selected[2].imageSrc;
-  dom.animalName[2].src = selected[2].nameSrc;
-};
-displayObjects();
 
 console.log(dom.animalPic.src);
 dom.nameForm.addEventListener("submit", () => {
@@ -49,6 +31,26 @@ dom.nameForm.addEventListener("submit", () => {
 
 //create a module to keep things in order
 const gamePlayModule = (() => {
+  const displayCards = () => {
+    //shufle the animal array
+    const shuffled = animalArr.sort(() => 0.5 - Math.random());
+    //get random 3 element from the shuffled array
+    let selected = shuffled.slice(0, 3);
+    console.log(shuffled);
+    console.log(selected);
+    console.log(selected[1].imageSrc);
+    console.log(dom.animalPic.length);
+    //give each card an animal and a name
+    dom.animalPic[0].src = selected[0].imageSrc;
+    dom.animalName[0].src = selected[0].nameSrc;
+    dom.animalString[0].alt = selected[0].nameString;
+    dom.animalPic[1].src = selected[1].imageSrc;
+    dom.animalName[1].src = selected[1].nameSrc;
+    dom.animalString[1].alt = selected[1].nameString;
+    dom.animalPic[2].src = selected[2].imageSrc;
+    dom.animalName[2].src = selected[2].nameSrc;
+    dom.animalString[2].alt = selected[2].nameString;
+  };
   const displayObjects = () => {
     const shuffled = animalArr.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 3);
@@ -102,7 +104,7 @@ const gamePlayModule = (() => {
     //logic that gives the two numbers that gives the correct answer when added to each other
     function detectPair(sum, poppedNumbers) {
       for (let i = 0; i < poppedNumbers.length; i++) {
-        for (j = 0; j < poppedNumbers.length; j++) {
+        for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
           else if (poppedNumbers[i] + poppedNumbers[j] === sum)
             return [poppedNumbers[i], poppedNumbers[j]];
@@ -127,6 +129,8 @@ const gamePlayModule = (() => {
     correctAnswer.classList.remove("card-operation");
     //add a new one
     correctAnswer.classList.add("correct-answer");
+
+    sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
 
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
@@ -216,6 +220,8 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     //add a new one
     correctAnswer.classList.add("correct-answer");
 
+    sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
+
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
       dom.cardOperations.forEach((card) => {
@@ -293,7 +299,7 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     //logic that gives the two numbers that gives the correct answer when added to each other
     function detectPair(sum, poppedNumbers) {
       for (let i = 0; i < poppedNumbers.length; i++) {
-        for (j = 0; j < poppedNumbers.length; j++) {
+        for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
           else if (poppedNumbers[i] - poppedNumbers[j] === sum)
             return [poppedNumbers[i], poppedNumbers[j]];
@@ -318,6 +324,8 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     correctAnswer.classList.remove("card-operation");
     //add a new one
     correctAnswer.classList.add("correct-answer");
+
+    sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
 
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
@@ -385,7 +393,7 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     //logic that gives the two numbers that gives the correct answer when multiplied to each other
     function detectPair(sum, poppedNumbers) {
       for (let i = 0; i < poppedNumbers.length; i++) {
-        for (j = 0; j < poppedNumbers.length; j++) {
+        for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
           else if (poppedNumbers[i] / poppedNumbers[j] === sum)
             return [poppedNumbers[i], poppedNumbers[j]];
@@ -410,6 +418,8 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     correctAnswer.classList.remove("card-operation");
     //add a new one
     correctAnswer.classList.add("correct-answer");
+
+    sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
 
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
@@ -448,7 +458,14 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     poppedNumbers = [];
   };
   //return only the function(s) needed
-  return { multiplication, addition, subtraction, division, createSumNumber };
+  return {
+    multiplication,
+    addition,
+    subtraction,
+    division,
+    displayCards,
+    createSumNumber,
+  };
 })();
 /*will use this array to change levels
 how?
@@ -472,46 +489,59 @@ dom.startBtn.addEventListener("click", () => {
   });
   //call the multiplication function
   gamePlayModule.createSumNumber(10);
+  gamePlayModule.displayCards();
+
   gamePlayModule.multiplication();
+  console.log(sessionStorage.getItem("answer"));
+
   start();
 });
 
 //when the next level button is clicked, the game will be played again
-dom.nextLevelButton.addEventListener("click", () => {
-  if (dom.animalInput.value) {
-    //should return a random number between 0-3 (including 3)
-    let randomizeNum = Math.floor(Math.random() * 4);
-
-    //push something to array on each click
-    arr.push(1);
-    console.log(arr);
-    dom.innerCards.forEach((card) => {
-      card.style.transform = "rotateY(180deg)";
-    });
-    //The only problem is that when the number is big, it goes outside of the card.
-    //The solution: Make the font smaller.
-    gamePlayModule.createSumNumber(50);
-
-    //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
-
-    // if (arr.length < 4) {
-    //   gamePlayModule.createSumNumber(10);
-    //   functionArray[randomizeNum]();
-    // } else if (arr.length > 4 && arr.length < 8) {
-    //   gamePlayModule.createSumNumber(20);
-    //   functionArray[randomizeNum]();
-    // } else if (arr.length > 8 && arr.length < 12) {
-    //   gamePlayModule.createSumNumber(30);
-    //   functionArray[randomizeNum]();
-    // } else if (arr.length > 12 && arr.length < 16) {
-    //   gamePlayModule.createSumNumber(50);
-    //   functionArray[randomizeNum]();
-    // }
-
-    //call a random operation on each click
-    functionArray[randomizeNum]();
-  }
+dom.nextLevelButton.addEventListener("click", (e) => {
+  //prevent default behavior so that the page wouldn't refresh time to time
+  e.preventDefault;
   console.log(dom.animalInput.value);
+  // const correctAnswer = document.querySelector(".correct-answer");
+  // console.log(correctAnswer);
+  // if (dom.animalInput.value) {
+  //should return a random number between 0-3 (including 3)
+  let randomizeNum = Math.floor(Math.random() * 4);
+
+  //push something to array on each click
+  arr.push(1);
+  console.log(arr);
+  dom.innerCards.forEach((card) => {
+    card.style.transform = "rotateY(180deg)";
+  });
+  //The only problem is that when the number is big, it goes outside of the card.
+  //The solution: Make the font smaller.
+  gamePlayModule.createSumNumber(50);
+
+  //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
+
+  // if (arr.length < 4) {
+  //   gamePlayModule.createSumNumber(10);
+  //   functionArray[randomizeNum]();
+  // } else if (arr.length > 4 && arr.length < 8) {
+  //   gamePlayModule.createSumNumber(20);
+  //   functionArray[randomizeNum]();
+  // } else if (arr.length > 8 && arr.length < 12) {
+  //   gamePlayModule.createSumNumber(30);
+  //   functionArray[randomizeNum]();
+  // } else if (arr.length > 12 && arr.length < 16) {
+  //   gamePlayModule.createSumNumber(50);
+  //   functionArray[randomizeNum]();
+  // }
+
+  gamePlayModule.displayCards();
+
+  //call a random operation on each click
+  functionArray[randomizeNum]();
+
+  console.log(sessionStorage.getItem("answer"));
+
+  // }
 });
 
 // Counter Stuff
