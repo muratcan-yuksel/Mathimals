@@ -21,9 +21,13 @@ const dom = {
   animalName: document.querySelectorAll(".animal-name"),
   animalString: document.querySelectorAll(".animalString"),
 };
+//the following array will be used to make the start button unclickable before the user writes his/her name
+const reqForStartBtn= []
 
 console.log(dom.animalPic.src);
 dom.nameForm.addEventListener("submit", () => {
+  reqForStartBtn.push(1);
+  console.log(reqForStartBtn)
   dom.nameForm.style.display = "none";
   dom.playerUsername.textContent = dom.nameInput.value;
   dom.playerData.style.display = "flex";
@@ -481,20 +485,25 @@ const functionArray = [
 ];
 
 dom.startBtn.addEventListener("click", () => {
-  //push something to array on start
-  arr.push(1);
-  console.log(arr);
-  dom.innerCards.forEach((card) => {
-    card.style.transform = "rotateY(180deg)";
-  });
-  //call the multiplication function
-  gamePlayModule.createSumNumber(10);
-  gamePlayModule.displayCards();
+  if(reqForStartBtn.length >0){
+//push something to array on start
+arr.push(1);
+console.log(arr);
+dom.innerCards.forEach((card) => {
+  card.style.transform = "rotateY(180deg)";
+});
+//call the multiplication function
+gamePlayModule.createSumNumber(10);
+gamePlayModule.displayCards();
 
-  gamePlayModule.multiplication();
-  console.log(sessionStorage.getItem("answer"));
+gamePlayModule.multiplication();
+console.log(sessionStorage.getItem("answer"));
 
-  start();
+start();
+  }else {
+    alert("please enter your name!")
+  }
+  
 });
 
 //when the next level button is clicked, the game will be played again
