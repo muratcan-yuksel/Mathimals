@@ -501,57 +501,60 @@ dom.startBtn.addEventListener("click", () => {
 dom.nextLevelButton.addEventListener("click", (e) => {
   //prevent default behavior so that the page wouldn't refresh time to time
   e.preventDefault;
-  console.log(dom.animalInput.value);
-  // const correctAnswer = document.querySelector(".correct-answer");
-  // console.log(correctAnswer);
-  // if (dom.animalInput.value) {
-  //should return a random number between 0-3 (including 3)
-  let randomizeNum = Math.floor(Math.random() * 4);
-
-  //push something to array on each click
-  arr.push(1);
-  console.log(arr);
-  dom.innerCards.forEach((card) => {
-    card.style.transform = "rotateY(180deg)";
-  });
-  //The only problem is that when the number is big, it goes outside of the card.
-  //The solution: Make the font smaller.
-  gamePlayModule.createSumNumber(50);
-
-  //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
-
-  // if (arr.length < 4) {
-  //   gamePlayModule.createSumNumber(10);
-  //   functionArray[randomizeNum]();
-  // } else if (arr.length > 4 && arr.length < 8) {
-  //   gamePlayModule.createSumNumber(20);
-  //   functionArray[randomizeNum]();
-  // } else if (arr.length > 8 && arr.length < 12) {
-  //   gamePlayModule.createSumNumber(30);
-  //   functionArray[randomizeNum]();
-  // } else if (arr.length > 12 && arr.length < 16) {
-  //   gamePlayModule.createSumNumber(50);
-  //   functionArray[randomizeNum]();
-  // }
-
-  //save the storage in a const to use it properly, otherwise it's slippery
-  const answer = sessionStorage.getItem("answer");
-  //this order of action is important. Change it and the algorithm breaks.
-  gamePlayModule.displayCards();
-  //call a random operation on each click
-  functionArray[randomizeNum]();
-
-  console.log(sessionStorage.getItem("answer"));
-  //save the input value too, otherwise it's slippery
-  const input = dom.animalInput.value;
-  console.log(input);
-  //should add some sugar coating here
-  if (input.toLowerCase() !== answer) {
-    alert("1nooy");
+     //save the storage in a const to use it properly, otherwise it's slippery
+     const answer = sessionStorage.getItem("answer");
+      //save the input value too, otherwise it's slippery
+    const input = dom.animalInput.value;
+  if(input !== "" && input.toLowerCase() == answer){
+    console.log(dom.animalInput.value);
+    // const correctAnswer = document.querySelector(".correct-answer");
+    // console.log(correctAnswer);
+    // if (dom.animalInput.value) {
+    //should return a random number between 0-3 (including 3)
+    let randomizeNum = Math.floor(Math.random() * 4);
+  
+    //push something to array on each click
+    arr.push(1);
+    console.log(arr);
+    dom.innerCards.forEach((card) => {
+      card.style.transform = "rotateY(180deg)";
+    });
+    //The only problem is that when the number is big, it goes outside of the card.
+    //The solution: Make the font smaller.
+    gamePlayModule.createSumNumber(50);
+  
+    //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
+  
+    // if (arr.length < 4) {
+    //   gamePlayModule.createSumNumber(10);
+    //   functionArray[randomizeNum]();
+    // } else if (arr.length > 4 && arr.length < 8) {
+    //   gamePlayModule.createSumNumber(20);
+    //   functionArray[randomizeNum]();
+    // } else if (arr.length > 8 && arr.length < 12) {
+    //   gamePlayModule.createSumNumber(30);
+    //   functionArray[randomizeNum]();
+    // } else if (arr.length > 12 && arr.length < 16) {
+    //   gamePlayModule.createSumNumber(50);
+    //   functionArray[randomizeNum]();
+    // }
+  
+ 
+    //this order of action is important. Change it and the algorithm breaks.
+    gamePlayModule.displayCards();
+    //call a random operation on each click
+    functionArray[randomizeNum]();
+  
+    console.log(sessionStorage.getItem("answer"));
+   
+    console.log(input);
+  
+  
+    // }
   }
   dom.animalInput.value = "";
 
-  // }
+ 
 });
 
 // Counter Stuff
