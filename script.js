@@ -200,8 +200,12 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
       for (let i = 0; i < poppedNumbers.length; i++) {
         for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
-          else if (poppedNumbers[i] * poppedNumbers[j] === sum)
+          else if (poppedNumbers[i] * poppedNumbers[j] === sum){
+          sessionStorage.setItem("firstMultiplicationNumber", poppedNumbers[i])
+          sessionStorage.setItem("secondMultiplicationNumber", poppedNumbers[j])
+
             return [poppedNumbers[i], poppedNumbers[j]];
+          }
         }
       }
       return null;
@@ -225,16 +229,28 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     correctAnswer.classList.add("correct-answer");
 
     sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
+    //get the numbers you'll exclude from the random (wrong) answers
+let excludeOne= sessionStorage.getItem("firstMultiplicationNumber")
+let excludeTwo = sessionStorage.getItem("secondMultiplicationNumber")
+console.log(excludeOne)
+console.log(excludeTwo)
+
+function generateWrongAnswers (min, max) {
+  let num = Math.floor(Math.random() * (max - min + 1)) + min;
+  return (num === excludeOne || num === excludeTwo) ? generateRandom(min, max) : num;
+}
+
+
 
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
       dom.cardOperations.forEach((card) => {
         if (card.className != "correct-answer") {
           card.textContent =
-            Math.floor(Math.random() * dom.givenNumber.textContent) +
-            1 +
+            generateWrongAnswers(1, 50) +
             "x" +
-            (Math.floor(Math.random() * dom.givenNumber.textContent) + 1);
+            generateWrongAnswers(1, 50) 
+
         } else {
           /*these if statements prevent the case in which the number has no divisors in poppedNumbers, 
     but obviously have in possibleNumbers( like 1 and the number itself)  */
@@ -521,7 +537,8 @@ dom.nextLevelButton.addEventListener("click", (e) => {
      const answer = sessionStorage.getItem("answer");
       //save the input value too, otherwise it's slippery
     const input = dom.animalInput.value;
-    if(arr.length < 3){
+    //decide the level
+    if(arr.length < 10){
       if(input !== "" && input.toLowerCase() == answer){
         console.log(dom.animalInput.value);
         // const correctAnswer = document.querySelector(".correct-answer");
