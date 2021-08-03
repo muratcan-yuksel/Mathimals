@@ -37,11 +37,22 @@ header h1 {
   font-size: 3rem;
 }
 
+/* .subheader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items :center;
+} */
+
 /* Styling buttons and input fields */
 #modalButton {
-  display:flex;
-  justify-content: flex-end;
+  /* display:flex;
+  justify-content: flex-end; */
   margin:1em;
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  
 }
   
 .form-btn {
@@ -119,6 +130,10 @@ form {
 }
 /* Cards */
 
+/* .cards-section {
+  visibility : none;
+} */
+
 .cards-wrapper {
   margin: 20px auto;
   width: 70%;
@@ -162,6 +177,10 @@ form {
   flex-direction: column;
   justify-content: space-between;
   border-radius: 15px;
+}
+
+.card-num .card-front {
+  justify-content: center;
 }
 
 .img-wrapper {
