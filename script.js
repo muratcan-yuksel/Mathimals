@@ -585,7 +585,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
       //save the input value too, otherwise it's slippery
     const input = dom.animalInput.value;
     //decide the level
-    if(arr.length < 10){
+    if(arr.length < 2){
       if(input !== "" && input.toLowerCase() == answer){
         console.log(dom.animalInput.value);
         // const correctAnswer = document.querySelector(".correct-answer");
@@ -604,21 +604,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
         //The solution: Make the font smaller.
         gamePlayModule.createSumNumber(50);
       
-        //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
       
-        // if (arr.length < 4) {
-        //   gamePlayModule.createSumNumber(10);
-        //   functionArray[randomizeNum]();
-        // } else if (arr.length > 4 && arr.length < 8) {
-        //   gamePlayModule.createSumNumber(20);
-        //   functionArray[randomizeNum]();
-        // } else if (arr.length > 8 && arr.length < 12) {
-        //   gamePlayModule.createSumNumber(30);
-        //   functionArray[randomizeNum]();
-        // } else if (arr.length > 12 && arr.length < 16) {
-        //   gamePlayModule.createSumNumber(50);
-        //   functionArray[randomizeNum]();
-        // }
       
      
         //this order of action is important. Change it and the algorithm breaks.
@@ -636,6 +622,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
     }else {
       //time should stop
       alert("game over")
+      stop();
     
     }
  
