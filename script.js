@@ -485,24 +485,31 @@ const functionArray = [
 ];
 
 dom.startBtn.addEventListener("click", () => {
-  if(reqForStartBtn.length >0){
-//push something to array on start
-arr.push(1);
-console.log(arr);
-dom.innerCards.forEach((card) => {
-  card.style.transform = "rotateY(180deg)";
-});
-//call the multiplication function
-gamePlayModule.createSumNumber(10);
-gamePlayModule.displayCards();
-
-gamePlayModule.multiplication();
-console.log(sessionStorage.getItem("answer"));
-
-start();
-  }else {
-    alert("please enter your name!")
+  if (arr.length ==0){
+    if(reqForStartBtn.length >0){
+      //push something to array on start
+      arr.push(1);
+      console.log(arr);
+      dom.innerCards.forEach((card) => {
+        card.style.transform = "rotateY(180deg)";
+      });
+      //call the multiplication function
+      gamePlayModule.createSumNumber(10);
+      gamePlayModule.displayCards();
+      
+      gamePlayModule.multiplication();
+      console.log(sessionStorage.getItem("answer"));
+      
+      start();
+        }else {
+          alert("please enter your name!")
+        }
   }
+  //if the user clicks the start game button while the game is running, refresh page
+  else {
+    document.location.reload()
+  }
+ 
   
 });
 
