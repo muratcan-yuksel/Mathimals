@@ -191,5 +191,22 @@ form {
   color: white;  
   max-width: 100%;
   max-height: auto;
+  background: var(--theme-color);
   background: url("/images/card-back.jpg") 0 0 no-repeat;
+  background: -o-repeating-linear-gradient(
+    45deg,
+    var(--theme-color) 0px,
+    var(--theme-color) 20px,
+    white 20px,
+    white 40px
+  );
+  background: repeating-linear-gradient(
+    45deg,
+    var(--theme-color) 0px,
+    var(--theme-color) 20px,
+    white 20px,
+    white 40px
+  );
+  
+  
 }
