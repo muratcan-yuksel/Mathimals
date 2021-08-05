@@ -89,6 +89,57 @@
         </div>
       </div>
       <!-- Instructions modal ends here -->
+      <!-- best scores modal -->
+      <!-- Button trigger modal -->
+      <div id="modalButton2">
+        <button
+          type="button"
+          class="btn btn-info"
+          data-bs-toggle="modal"
+          data-bs-target="#bestScoresModal"
+        >
+          Best scores
+        </button>
+      </div>
+
+      <!-- Vertically centered scrollable modal -->
+
+      <div
+        class="modal fade"
+        id="bestScoresModal"
+        tabindex="-1"
+        aria-labelledby="bestScoresModal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="bestScoresModal">
+                Scores list
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div id="scoresModal">something</div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- best scores modal ends -->
       <header id="main-header">
         <h1>Welcome to Mathimals</h1>
         <h2>Math & Typing Game</h2>        
