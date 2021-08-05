@@ -587,9 +587,10 @@ dom.nextLevelButton.addEventListener("click", (e) => {
      const answer = sessionStorage.getItem("answer");
       //save the input value too, otherwise it's slippery
     const input = dom.animalInput.value;
+    if(input !== "" && input.toLowerCase() == answer){
+
     //decide the level
     if(arr.length < 1){
-      if(input !== "" && input.toLowerCase() == answer){
         console.log(dom.animalInput.value);
         // const correctAnswer = document.querySelector(".correct-answer");
         // console.log(correctAnswer);
@@ -621,7 +622,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
       
       
         // }
-      }
+      
     }else {
              //get the DOM string
              let result=document.querySelector("#total-time").textContent
@@ -757,15 +758,16 @@ dom.nextLevelButton.addEventListener("click", (e) => {
       //time should stop
       alert("Game over! Check if you made it to best scores list!")
       stop();
-      // document.location.reload();
+      document.location.reload();
  
     
     }
  
   dom.animalInput.value = "";
 
- 
+}
 });
+
 
 const db = firebase.firestore();
 
