@@ -193,3 +193,6 @@ form {
   max-height: auto;
   background: url("/images/card-back.jpg") 0 0 no-repeat;
 }
+.scoresList{
+  font-weight: 900;
+}

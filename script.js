@@ -755,8 +755,9 @@ dom.nextLevelButton.addEventListener("click", (e) => {
 
 
       //time should stop
-      alert("game over")
+      alert("Game over! Check if you made it to best scores list!")
       stop();
+      // document.location.reload();
  
     
     }
@@ -767,21 +768,6 @@ dom.nextLevelButton.addEventListener("click", (e) => {
 });
 
 const db = firebase.firestore();
-//render function
-//   const renderScore = (doc) => {
-//     //will use this id for updating, for now
-//     bestScoreText.setAttribute("data-id", doc.id);
-//     bestScoreText.textContent = "Your score: " +  doc.data().bestScore;
-//   };    
-// getting data
-db.collection("score")
-.get()
-.then((snapshot) => {
-  snapshot.docs.forEach((doc) => {
-    //passing the above function
-    // renderScore(doc);
-  });
-});
 
 //write the best scores in the new html page
 // const bestScoresList= document.getElementById("scoresModal")
@@ -800,11 +786,11 @@ function fireStore () {
     snapshot.docs.forEach((doc) => {
     
 
-      firstPlace.textContent=`Player Name: ${doc.data().topScores[0].userName} Time: ${doc.data().topScores[0].scoreStr}`
-      secondPlace.textContent=`Player Name: ${doc.data().topScores[1].userName} Time: ${doc.data().topScores[1].scoreStr}`
-      thirdPlace.textContent=`Player Name: ${doc.data().topScores[2].userName} Time: ${doc.data().topScores[2].scoreStr}`
-      fourthPlace.textContent=`Player Name: ${doc.data().topScores[3].userName} Time: ${doc.data().topScores[3].scoreStr}`
-      fifthPlace.textContent=`Player Name: ${doc.data().topScores[4].userName} Time: ${doc.data().topScores[4].scoreStr}`
+      firstPlace.textContent=`Player Name: ${doc.data().topScores[0].userName}, Time: ${doc.data().topScores[0].scoreStr}`
+      secondPlace.textContent=`Player Name: ${doc.data().topScores[1].userName}, Time: ${doc.data().topScores[1].scoreStr}`
+      thirdPlace.textContent=`Player Name: ${doc.data().topScores[2].userName}, Time: ${doc.data().topScores[2].scoreStr}`
+      fourthPlace.textContent=`Player Name: ${doc.data().topScores[3].userName}, Time: ${doc.data().topScores[3].scoreStr}`
+      fifthPlace.textContent=`Player Name: ${doc.data().topScores[4].userName}, Time: ${doc.data().topScores[4].scoreStr}`
     })
   })
   //firebase playing ends
