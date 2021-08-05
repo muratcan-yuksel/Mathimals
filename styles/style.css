@@ -17,8 +17,9 @@ body {
   font-family: 'Open Sans', sans-serif;
     
 }
-h2, .time-data span {
+h2, .time-data span, .level-data span, output {
   font-size: 1.5rem;
+  display: inline-block;
 }
 
 header {
@@ -114,6 +115,7 @@ input[type="text"] {
 
 .time-data {
   margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 
