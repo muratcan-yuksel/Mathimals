@@ -20,6 +20,8 @@ const dom = {
   animalPic: document.querySelectorAll(".animal-pic"),
   animalName: document.querySelectorAll(".animal-name"),
   animalString: document.querySelectorAll(".animalString"),
+          //show level output
+ showLevel: document.getElementById("levelOutput")
 };
 //the following array will be used to make the start button unclickable before the user writes his/her name
 const reqForStartBtn= []
@@ -550,6 +552,9 @@ const functionArray = [
   gamePlayModule.addition,
 ];
 
+
+dom.showLevel.textContent="1/20";
+
 dom.startBtn.addEventListener("click", () => {
   if (arr.length ==0){
     if(reqForStartBtn.length >0){
@@ -590,7 +595,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
     if(input !== "" && input.toLowerCase() == answer){
 
     //decide the level
-    if(arr.length < 1){
+    if(arr.length < 20){
         console.log(dom.animalInput.value);
         // const correctAnswer = document.querySelector(".correct-answer");
         // console.log(correctAnswer);
@@ -620,6 +625,8 @@ dom.nextLevelButton.addEventListener("click", (e) => {
        
         console.log(input);
       
+//show level
+dom.showLevel.textContent= `${arr.length}/20` 
       
         // }
       
@@ -758,7 +765,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
       //time should stop
       alert("Game over! Check if you made it to best scores list!")
       stop();
-      document.location.reload();
+    //  document.location.reload();
  
     
     }
