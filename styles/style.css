@@ -47,6 +47,13 @@ header h1 {
   right: 3rem;
   
 }
+
+#modalButton2 {
+  margin:1em;
+  position: absolute;
+  top: 6rem;
+  right: 3rem;
+}
   
 .form-btn {
   background-color: #ffc107;
