@@ -25,12 +25,15 @@ const dom = {
 const reqForStartBtn= []
 
 console.log(dom.animalPic.src);
-dom.nameForm.addEventListener("submit", () => {
+dom.nameForm.addEventListener("submit", (e) => {
+  e.preventDefault;
   reqForStartBtn.push(1);
   console.log(reqForStartBtn)
   dom.nameForm.style.display = "none";
   dom.playerUsername.textContent = dom.nameInput.value;
   dom.playerData.style.display = "flex";
+  console.log(dom.playerUsername.textContent)
+  sessionStorage.setItem("userName",dom.playerUsername.textContent)
 });
 
 //create a module to keep things in order
@@ -110,8 +113,12 @@ const gamePlayModule = (() => {
       for (let i = 0; i < poppedNumbers.length; i++) {
         for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
-          else if (poppedNumbers[i] + poppedNumbers[j] === sum)
+          else if (poppedNumbers[i] + poppedNumbers[j] === sum){
+            sessionStorage.setItem("firstAdditionNumber", poppedNumbers[i])
+            sessionStorage.setItem("secondAdditionNumber", poppedNumbers[j])
             return [poppedNumbers[i], poppedNumbers[j]];
+
+          }
         }
       }
       return null;
@@ -136,15 +143,27 @@ const gamePlayModule = (() => {
 
     sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
 
+       //get the numbers you'll exclude from the random (wrong) answers
+       let excludeOne= sessionStorage.getItem("firstAdditionNumber")
+       let excludeTwo = sessionStorage.getItem("secondAdditionNumber")
+       console.log(excludeOne)
+       console.log(excludeTwo)
+
+       function generateWrongAnswers (min, max) {
+        let num = Math.floor(Math.random() * (max - min + 1)) + min;
+        return (num === excludeOne || num === excludeTwo) ? generateRandom(min, max) : num;
+      }
+      
+
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
       dom.cardOperations.forEach((card) => {
         if (card.className != "correct-answer") {
           card.textContent =
-            Math.floor(Math.random() * dom.givenNumber.textContent) +
-            1 +
+          generateWrongAnswers(1, 75) +
+
             "+" +
-            (Math.floor(Math.random() * dom.givenNumber.textContent) + 1);
+            generateWrongAnswers(1, 75)
         } else {
           /*these if statements prevent the case in which the number has no divisors in poppedNumbers, 
 but obviously have in possibleNumbers( like 1 and the number itself)  */
@@ -200,8 +219,12 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
       for (let i = 0; i < poppedNumbers.length; i++) {
         for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
-          else if (poppedNumbers[i] * poppedNumbers[j] === sum)
+          else if (poppedNumbers[i] * poppedNumbers[j] === sum){
+          sessionStorage.setItem("firstMultiplicationNumber", poppedNumbers[i])
+          sessionStorage.setItem("secondMultiplicationNumber", poppedNumbers[j])
+
             return [poppedNumbers[i], poppedNumbers[j]];
+          }
         }
       }
       return null;
@@ -226,15 +249,28 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
 
     sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
 
+    //get the numbers you'll exclude from the random (wrong) answers
+    let excludeOne= sessionStorage.getItem("firstMultiplicationNumber")
+    let excludeTwo = sessionStorage.getItem("secondMultiplicationNumber")
+    console.log(excludeOne)
+    console.log(excludeTwo)
+
+function generateWrongAnswers (min, max) {
+  let num = Math.floor(Math.random() * (max - min + 1)) + min;
+  return (num === excludeOne || num === excludeTwo) ? generateRandom(min, max) : num;
+}
+
+
+
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
       dom.cardOperations.forEach((card) => {
         if (card.className != "correct-answer") {
           card.textContent =
-            Math.floor(Math.random() * dom.givenNumber.textContent) +
-            1 +
+            generateWrongAnswers(1, 50) +
             "x" +
-            (Math.floor(Math.random() * dom.givenNumber.textContent) + 1);
+            generateWrongAnswers(1, 50) 
+
         } else {
           /*these if statements prevent the case in which the number has no divisors in poppedNumbers, 
     but obviously have in possibleNumbers( like 1 and the number itself)  */
@@ -291,11 +327,11 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
     } else if (sum > 10 && sum < 50) {
       poppedNumbers = possibleNumbers.splice(0, 7);
     } else if (sum > 50 && sum < 100) {
-      poppedNumbers = possibleNumbers.splice(0, 57);
+      poppedNumbers = possibleNumbers.splice(0, 47);
     } else if (sum > 100 && sum < 150) {
-      poppedNumbers = possibleNumbers.splice(0, 103);
+      poppedNumbers = possibleNumbers.splice(0, 93);
     } else if (sum > 150 && sum <= 200) {
-      poppedNumbers = possibleNumbers.splice(0, 157);
+      poppedNumbers = possibleNumbers.splice(0, 147);
     }
 
     console.log(poppedNumbers);
@@ -305,8 +341,12 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
       for (let i = 0; i < poppedNumbers.length; i++) {
         for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
-          else if (poppedNumbers[i] - poppedNumbers[j] === sum)
+          else if (poppedNumbers[i] - poppedNumbers[j] === sum){
+            sessionStorage.setItem("firstSubtractionNumber", poppedNumbers[i])
+            sessionStorage.setItem("secondSubtractionNumber", poppedNumbers[j])
             return [poppedNumbers[i], poppedNumbers[j]];
+
+          }
         }
       }
       return null;
@@ -331,16 +371,28 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
 
     sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
 
+        //get the numbers you'll exclude from the random (wrong) answers
+        let excludeOne= sessionStorage.getItem("firstSubtractionNumber")
+        let excludeTwo = sessionStorage.getItem("secondSubtractionNumber")
+        console.log(excludeOne)
+        console.log(excludeTwo)
+
+        function generateWrongAnswers (min, max) {
+          let num = Math.floor(Math.random() * (max - min + 1)) + min;
+          return (num === excludeOne || num === excludeTwo) ? generateRandom(min, max) : num;
+        }
+        
+
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
       dom.cardOperations.forEach((card) => {
         if (card.className != "correct-answer") {
           card.textContent =
-            Math.floor(Math.random() * dom.givenNumber.textContent) +
-            1 +
+          generateWrongAnswers(1, 150) 
+          +
             "-" +
-            (Math.floor(Math.random() * dom.givenNumber.textContent) + 1);
-        } else {
+            generateWrongAnswers(1, 150) 
+          } else {
           /*these if statements prevent the case in which the number has no divisors in poppedNumbers, 
 but obviously have in possibleNumbers( like 1 and the number itself)  */
           if (detectPair(sum, poppedNumbers) == null) {
@@ -399,8 +451,12 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
       for (let i = 0; i < poppedNumbers.length; i++) {
         for (let j = 0; j < poppedNumbers.length; j++) {
           if (i == j) continue;
-          else if (poppedNumbers[i] / poppedNumbers[j] === sum)
+          else if (poppedNumbers[i] / poppedNumbers[j] === sum){
+            sessionStorage.setItem("firstDivisionNumber", poppedNumbers[i])
+            sessionStorage.setItem("secondDivisionNumber", poppedNumbers[j])
             return [poppedNumbers[i], poppedNumbers[j]];
+
+          }
         }
       }
       return null;
@@ -425,16 +481,26 @@ but obviously have in possibleNumbers( like 1 and the number itself)  */
 
     sessionStorage.setItem("answer", correctAnswer.parentNode.children[2].alt);
 
+     //get the numbers you'll exclude from the random (wrong) answers
+     let excludeOne= sessionStorage.getItem("firstDivisionNumber")
+     let excludeTwo = sessionStorage.getItem("secondDivisionNumber")
+
+     function generateWrongAnswers (min, max) {
+      let num = Math.floor(Math.random() * (max - min + 1)) + min;
+      return (num === excludeOne || num === excludeTwo) ? generateRandom(min, max) : num;
+    }
+    
+
     //generate a random operation between numbers in the array on start game button click
     const generateOperation = () => {
       dom.cardOperations.forEach((card) => {
         if (card.className != "correct-answer") {
           card.textContent =
-            Math.floor(Math.random() * dom.givenNumber.textContent) +
-            1 +
+          generateWrongAnswers(1, 250) +
+
             "/" +
-            (Math.floor(Math.random() * dom.givenNumber.textContent) + 1);
-        } else {
+            generateWrongAnswers(1, 250) 
+          } else {
           /*these if statements prevent the case in which the number has no divisors in poppedNumbers, 
     but obviously have in possibleNumbers( like 1 and the number itself)  */
           if (detectPair(sum, poppedNumbers) == null) {
@@ -521,7 +587,8 @@ dom.nextLevelButton.addEventListener("click", (e) => {
      const answer = sessionStorage.getItem("answer");
       //save the input value too, otherwise it's slippery
     const input = dom.animalInput.value;
-    if(arr.length < 3){
+    //decide the level
+    if(arr.length < 1){
       if(input !== "" && input.toLowerCase() == answer){
         console.log(dom.animalInput.value);
         // const correctAnswer = document.querySelector(".correct-answer");
@@ -540,21 +607,7 @@ dom.nextLevelButton.addEventListener("click", (e) => {
         //The solution: Make the font smaller.
         gamePlayModule.createSumNumber(50);
       
-        //the following creates many bugs for some reason. Like, the sum and the numbers don't match up.
       
-        // if (arr.length < 4) {
-        //   gamePlayModule.createSumNumber(10);
-        //   functionArray[randomizeNum]();
-        // } else if (arr.length > 4 && arr.length < 8) {
-        //   gamePlayModule.createSumNumber(20);
-        //   functionArray[randomizeNum]();
-        // } else if (arr.length > 8 && arr.length < 12) {
-        //   gamePlayModule.createSumNumber(30);
-        //   functionArray[randomizeNum]();
-        // } else if (arr.length > 12 && arr.length < 16) {
-        //   gamePlayModule.createSumNumber(50);
-        //   functionArray[randomizeNum]();
-        // }
       
      
         //this order of action is important. Change it and the algorithm breaks.
@@ -570,8 +623,141 @@ dom.nextLevelButton.addEventListener("click", (e) => {
         // }
       }
     }else {
+             //get the DOM string
+             let result=document.querySelector("#total-time").textContent
+             console.log(result)
+             console.log(result.split(""))
+
+             //split the string into an array
+             let splitted= result.split("")
+         
+             //take the hours part of the array
+             let hours= splitted.slice(0,2)
+             //create an empty hours array
+             let hoursArr=[]
+             //add the splitted digits into the hours array, mostly it'll stay as 00
+             hours.forEach((item)=>hoursArr.push(Number(item)))
+         
+             console.log(hoursArr)
+             
+             //do the same for minutes    
+             let mins= splitted.slice(3,5)
+             let minsArr=[]
+             mins.forEach((item)=>minsArr.push(Number(item)))
+             console.log(minsArr)
+         
+             //do the same for seconds
+             let secsArr=[]
+             let secs= splitted.slice(6,8)
+             secs.forEach((item)=>secsArr.push(Number(item)))
+             console.log(secsArr)
+         
+             //do the same for miliseconds
+             let milisecsArr=[]
+             let milisecs= splitted.slice(9,12)
+             milisecs.forEach((item)=>milisecsArr.push(Number(item)))
+             console.log(milisecsArr)
+             
+             //concat these arrays
+             let concatArr= (hoursArr.concat(minsArr)).concat((secsArr.concat(milisecsArr)))
+             console.log(concatArr)
+         
+             //turn this new concatted array to number so that you can later decide which score is the smallest number amongst all
+             let numberedConcatArr= Number(concatArr.join(""))
+             console.log(numberedConcatArr)
+             console.log(concatArr)
+         
+         // once you compare the above number and decide which is the best (smallest) score, 
+         // turn this number into a string that can be displayed on the page
+         /*  A top 10 scores array can be created and changed, ordered in real time   */
+         
+         concatArr.splice(2,0,":")
+         concatArr.splice(5,0,":")
+         concatArr.splice(8,0,".")
+         console.log(concatArr)
+         //and this will be the score that will be displayed on the board
+         let userScore= concatArr.join("")
+         console.log(userScore)
+         
+         
+         //create an object constructor
+         function scoreObj (userName, scoreNum, scoreStr){
+           this.userName= userName;
+           this.scoreNum= scoreNum;
+           this.scoreStr=scoreStr;
+           //need to use a function
+           //otherwise I can't push these values to the firestore array (topScores)
+           this.foo=()=>{
+             return { userName:this.userName, scoreNum: this.scoreNum, scoreStr: this.scoreStr}
+           }
+         } 
+         const db = firebase.firestore();
+         // let bestScoreText= document.querySelector("#bestScore")
+         db.collection("score")
+           .get()
+           .then((snapshot) => {
+             snapshot.docs.forEach((doc) => {
+               console.log(doc.data());
+               console.log(doc.data().topScores);
+         
+               let scores=doc.data().topScores;
+               //get the user name input via session storage
+               let userInput=  sessionStorage.getItem("userName")
+         
+               //create a new scoreObj object
+          let newObject= new scoreObj(userInput, numberedConcatArr, userScore)
+          console.log(newObject)
+          console.log(newObject.foo())
+         
+         //the following function makes sure that there are max 5 elements in the array
+         //and each time a new elements needs to be added, it pops the last (worst) player out from the list
+         
+          //if the 5th element exists
+          if(typeof scores[4] != "undefined"){
+         //push the new object only if it beats the 5th array element
+         if (newObject.foo().scoreNum < scores[4].scoreNum ){
+           //pop the last element out
+           scores.pop();
+          scores.push(newObject.foo());
+         
+         }
+          }else {
+           scores.push(newObject.foo());
+         
+          }
+          
+               //to empty the array
+               // scores=[]
+         
+               //sort the array in firebase in ascending order
+               //due to my architecture (lol), it pushes the ordered array to firesstore already
+               scores.sort(function(a,b){
+                 return parseFloat(a.scoreNum) - parseFloat(b.scoreNum)
+               })
+               console.log(scores)
+         
+         
+         
+         //update the data in firestore console,
+         //it will be shown on page refresh
+         db.collection("score")
+         .doc("lwECwR0Tlh4mrDZTHtdt")
+         .update({
+           bestScore: userScore,
+           //so I can add an array of objects into firestore 
+           newScore: numberedConcatArr,
+           // topScores:[{string:userScore, number:numberedConcatArr}]
+           topScores:scores,
+         
+                 });     
+             });  
+           });
+
+
       //time should stop
       alert("game over")
+      stop();
+ 
     
     }
  
@@ -579,6 +765,51 @@ dom.nextLevelButton.addEventListener("click", (e) => {
 
  
 });
+
+const db = firebase.firestore();
+//render function
+//   const renderScore = (doc) => {
+//     //will use this id for updating, for now
+//     bestScoreText.setAttribute("data-id", doc.id);
+//     bestScoreText.textContent = "Your score: " +  doc.data().bestScore;
+//   };    
+// getting data
+db.collection("score")
+.get()
+.then((snapshot) => {
+  snapshot.docs.forEach((doc) => {
+    //passing the above function
+    // renderScore(doc);
+  });
+});
+
+//write the best scores in the new html page
+// const bestScoresList= document.getElementById("scoresModal")
+const firstPlace= document.getElementById("firstPlace")
+const secondPlace= document.getElementById("secondPlace")
+const thirdPlace= document.getElementById("thirdPlace")
+const fourthPlace= document.getElementById("fourthPlace")
+const fifthPlace= document.getElementById("fifthPlace")
+
+// bestScoresList.textContent="hohoo"
+function fireStore () {
+  let i;
+  db.collection("score")
+  .get()
+  .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+    
+
+      firstPlace.textContent=`Player Name: ${doc.data().topScores[0].userName} Time: ${doc.data().topScores[0].scoreStr}`
+      secondPlace.textContent=`Player Name: ${doc.data().topScores[1].userName} Time: ${doc.data().topScores[1].scoreStr}`
+      thirdPlace.textContent=`Player Name: ${doc.data().topScores[2].userName} Time: ${doc.data().topScores[2].scoreStr}`
+      fourthPlace.textContent=`Player Name: ${doc.data().topScores[3].userName} Time: ${doc.data().topScores[3].scoreStr}`
+      fifthPlace.textContent=`Player Name: ${doc.data().topScores[4].userName} Time: ${doc.data().topScores[4].scoreStr}`
+    })
+  })
+  //firebase playing ends
+}
+window.onload=fireStore();
 
 // Counter Stuff
 

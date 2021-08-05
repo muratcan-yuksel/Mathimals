@@ -89,6 +89,63 @@
         </div>
       </div>
       <!-- Instructions modal ends here -->
+      <!-- best scores modal -->
+      <!-- Button trigger modal -->
+      <div id="modalButton2">
+        <button
+          type="button"
+          class="btn btn-info"
+          data-bs-toggle="modal"
+          data-bs-target="#bestScoresModal"
+        >
+          Best scores
+        </button>
+      </div>
+
+      <!-- Vertically centered scrollable modal -->
+
+      <div
+        class="modal fade"
+        id="bestScoresModal"
+        tabindex="-1"
+        aria-labelledby="bestScoresModal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="bestScoresModal">
+                Scores list
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <ol id="scoresModal">
+               <li id="firstPlace"></li>
+               <li id="secondPlace"></li>
+               <li id="thirdPlace"></li>
+               <li id="fourthPlace"></li>
+               <li id="fifthPlace"></li>
+              </ol>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- best scores modal ends -->
       <header id="main-header">
         <h1>Welcome to Mathimals</h1>
         <h2>Math & Typing Game</h2>        
@@ -112,7 +169,7 @@
         </div>
         <div class="time-data">
           <span>Total Time </span>
-          <span id="total-time">00:00:00.000</span>
+          <output id="total-time">00:00:00.000</output>
         </div>
       </section>
       <div class="game-btn start-btn">
@@ -197,6 +254,30 @@
         </form>
       </section>
     </main>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDCyIvP939b6JbqQa2Y-ZmFvofeiO-oDvE",
+    authDomain: "mathimals.firebaseapp.com",
+    projectId: "mathimals",
+    storageBucket: "mathimals.appspot.com",
+    messagingSenderId: "205494391309",
+    appId: "1:205494391309:web:e734973f11007e5cee3b44",
+    measurementId: "G-Q2P63QYJG0"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 
     <!-- bootstrap script -->
     <script
