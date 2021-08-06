@@ -24,7 +24,7 @@ h2, .time-data span, .level-data span, output {
 
 header {
   text-align: center;
-  margin: 25px 0;
+  margin: 1rem 0;
 }
 
 section {
@@ -40,19 +40,15 @@ header h1 {
 
 /* Styling buttons and input fields */
 #modalButton {
-  /* display:flex;
-  justify-content: flex-end; */
-  margin:1em;
   position: absolute;
-  top: 3rem;
+  top: 20%;
   right: 3rem;
   
 }
 
 #modalButton2 {
-  margin:1em;
   position: absolute;
-  top: 6rem;
+  top: calc(25% + 1rem);
   right: 3rem;
 }
   
@@ -88,6 +84,8 @@ input[type="text"] {
   background-color: var(--theme-color);
   color: white;
   border-radius: 5px;
+  border: 0;
+  margin: 0.5rem 0.5rem;
 }
 
 .game-btn:hover, input[type="submit"]:hover {
@@ -97,12 +95,16 @@ input[type="text"] {
 
 
 /* Game data section  */
-#game-data-section {
+#game-data-section, #buttons-section {
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.game-data {
+  margin: 0.5rem;
 }
 .player-data {
   display : none;
@@ -112,23 +114,12 @@ input[type="text"] {
   margin-right: 1rem;
 }
 
-
-.time-data {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
-
 form {
   display: flex;
   justify-content: center;
 }
 
-/* Start Btn  */
-.start-btn {
-  margin: 0 auto;
-  text-align: center;
-}
+
 /* Cards */
 
 .cards-wrapper {
@@ -221,4 +212,12 @@ form {
 }
 .scoresList{
   font-weight: 900;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 750px) {
+  #modalButton, #modalButton2 {
+    position:static;
+  }
 }

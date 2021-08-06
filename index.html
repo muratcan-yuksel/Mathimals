@@ -25,20 +25,8 @@
   <body>
     <main>
       <!-- Instructions Modal -->
-      <!-- Button trigger modal -->
-      <div id="modalButton">
-        <button
-          type="button"
-          class="btn btn-info"
-          data-bs-toggle="modal"
-          data-bs-target="#instructionsModal"
-        >
-          How to play the game?
-        </button>
-      </div>
-
+      
       <!-- Vertically centered scrollable modal -->
-
       <div
         class="modal fade"
         id="instructionsModal"
@@ -90,17 +78,6 @@
       </div>
       <!-- Instructions modal ends here -->
       <!-- best scores modal -->
-      <!-- Button trigger modal -->
-      <div id="modalButton2">
-        <button
-          type="button"
-          class="btn btn-info"
-          data-bs-toggle="modal"
-          data-bs-target="#bestScoresModal"
-        >
-          Best scores
-        </button>
-      </div>
 
       <!-- Vertically centered scrollable modal -->
 
@@ -151,7 +128,7 @@
         <h2>Math & Typing Game</h2>        
       </header>
       <section id="game-data-section">
-        <form action="#" id="name-form">
+        <form action="#" id="name-form" class="game-data">
           <label for="name-input">
             <input
               type="text"
@@ -163,24 +140,48 @@
           <input type="submit" name="submit" value="Enter" class="form-btn" />
         </form>
 
-        <div class="player-data">
+        <div class="game-data player-data">
           <h2>Player:</h2>
           <h2 id="player-username"></h2>
         </div>
-        <div class="time-data">
+        <div class="game-data time-data">
           <span>Total Time: </span>
           <output id="total-time">00:00:00.000</output>
         </div>
-        <div class="level-data">
+        <div class="game-data level-data">
           <span>Level:</span>
           <span id="levelOutput"></span>
         </div>
         
       </section>
-      <!-- <div id="levelOutput"></div> -->
-      <div class="game-btn start-btn">
-        <span>Start Game</span>
-      </div>
+      <!-- Button trigger modal -->
+      <section id="buttons-section">
+        <div id="modalButton2">
+          <button
+            type="button"
+            class="game-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#bestScoresModal"
+          >
+            Best scores
+          </button>
+        </div>
+        <!-- Button trigger modal -->
+        <div id="modalButton">
+          <button
+            type="button"
+            class="game-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#instructionsModal"
+          >
+            How to play?
+          </button>
+        </div>
+        <div class="game-btn start-btn">
+          <span>Start Game</span>
+        </div>
+      </section>
+      
       <section id="cards-section">
         <div class="cards-wrapper">
           <div class="card card-num">
